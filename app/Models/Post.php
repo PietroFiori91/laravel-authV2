@@ -17,5 +17,6 @@ class Post extends Model
         'title',
         'body',
         'image',
+        'slug',
     ];
 }

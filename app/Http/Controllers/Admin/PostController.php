@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Support\Str;
 
 
 class PostController extends Controller
@@ -16,9 +17,9 @@ class PostController extends Controller
         return view("admin.posts.index", compact("posts"));
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::where("slug", $slug)->first();
 
         return view("admin.posts.show", compact("post"));
     }
@@ -36,8 +37,26 @@ class PostController extends Controller
             "image" => "required|max:255",
         ]);
 
+        //COUNTER PER EVITARE POST CON NOME UGUALE
+
+        $counter = 0;
+
+        do {
+
+            $slug = Str::slug($data["title"]) . ($counter > 0 ? "-" . $counter : "");
+
+            $alreadyExists = Post::where("slug", $data["slug"])->first();
+
+            $counter++;
+        } while (!$alreadyExists);
+
+        $data["slug"] = $slug;
+
+
+
+
         $post = Post::create($data);
 
-        return redirect()->route("admin.profile.show")->with("success", "Post created succesfully.");
+        return redirect()->route("admin.posts.show", $post->id)->with("success", "Post created succesfully.");
     }
 }
