@@ -2,7 +2,13 @@
 
 @section('content')
     <div class="container">
+        <div class="navbar my-5">
+            <a href="{{ riute('admin.posts.index') }}" class="btn btn-link">
+                <i class="fas fa-chevron-left"></i>Torna alla lista Post</a>
+        </div>
         <h1>{{ $post->title }}</h1>
+
+        <img src="{{ asset('/storage/' . $post->image) }}" alt="" class="img-fluid">
 
         <small>Data pubblicazione: {{ $post->published_at?->format('d/m/Y H:i') }}</small>
 

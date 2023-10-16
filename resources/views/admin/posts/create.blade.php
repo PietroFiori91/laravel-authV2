@@ -18,7 +18,7 @@
             <div class="mb-5"><label class="form-label">Titolo</label><input type="text" class="form-control"
                     name="title">
             </div>
-            <div class="mb-5"><label class="form-label">Immagine</label><input type="text" class="form-control"
+            <div class="mb-5"><label class="form-label">Immagine</label><input type="file" class="form-control"
                     name="image">
             </div>
             <div class="mb-5"><label class="form-label">Contenuto</label>

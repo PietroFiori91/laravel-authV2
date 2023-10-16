@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostUpsertRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 
@@ -67,6 +68,10 @@ class PostController extends Controller
             $post->is_published = false;
             $post->published_at = null;
         }
+
+        $image_path = Storage::put("posts", $data["image"]);
+
+        $data["image"] = $image_path;
 
         $post->update($data);
 

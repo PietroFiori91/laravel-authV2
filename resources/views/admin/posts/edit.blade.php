@@ -12,15 +12,15 @@
                 @endforeach
             </ul>
         @endif
-        <form action="{{ route('admin.posts.update', $post->slug) }}" method="POST">
+        <form action="{{ route('admin.posts.update', $post->slug) }}" method="POST" enctype="multipart/form-data">
             @csrf()
             @method('PATCH')
 
             <div class="mb-5"><label class="form-label">Titolo</label><input type="text" class="form-control" name="title"
                     value="{{ $post->title }}">
             </div>
-            <div class="mb-5"><label class="form-label">Immagine</label><input type="text" class="form-control"
-                    name="image" value="{{ $post->image }}">
+            <div class="mb-5"><label class="form-label">Immagine</label><input type="file" class="form-control"
+                    name="image">
             </div>
             <div class="mb-5"><label class="form-label">Contenuto</label>
                 <textarea class="form-control" name="body">{{ $post->body }}</textarea>
