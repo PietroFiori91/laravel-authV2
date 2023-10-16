@@ -41,6 +41,9 @@ Route::middleware(['auth', 'verified'])
         //UPDATE
         Route::get("/posts/{post}/edit", [PostController::class, "edit"])->name("posts.edit");
         Route::patch("/posts/{post}", [PostController::class, "update"])->name("posts.update");
+
+        //DELETE
+        Route::delete("/post/{post}", [PostController::class, "destroy"])->name("posts.destroy");
     });
 
 Route::get("/posts", [GuestPostController::class, "index"])->name("post.index");

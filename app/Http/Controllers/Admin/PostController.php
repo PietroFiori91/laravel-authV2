@@ -73,6 +73,14 @@ class PostController extends Controller
         return redirect()->route("admin.posts.show", $post->slug);
     }
 
+    public function destroy($slug)
+    {
+        $post = Post::when("slug", $slug)->firstOrFail();
+        $post->delete();
+
+        return redirect()->route("admin.posts.index");
+    }
+
     protected function generateSlug($title)
     {
         //COUNTER PER EVITARE POST CON NOME UGUALE
