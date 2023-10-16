@@ -12,20 +12,21 @@
                 @endforeach
             </ul>
         @endif
-        <form action="{{ route('admin.posts.store') }}" method="POST">
+        <form action="{{ route('admin.posts.update', $post->slug) }}" method="POST">
             @csrf()
+            @method('PATCH')
 
-            <div class="mb-5"><label class="form-label">Titolo</label><input type="text" class="form-control"
-                    name="title">
+            <div class="mb-5"><label class="form-label">Titolo</label><input type="text" class="form-control" name="title"
+                    value="{{ $post->title }}">
             </div>
             <div class="mb-5"><label class="form-label">Immagine</label><input type="text" class="form-control"
-                    name="image">
+                    name="image" value="{{ $post->image }}">
             </div>
             <div class="mb-5"><label class="form-label">Contenuto</label>
-                <textarea class="form-control" name="body"></textarea>
+                <textarea class="form-control" name="body">{{ $post->body }}</textarea>
             </div>
 
-            <button class="btn btn-primary">Crea</button>
+            <button class="btn btn-primary">Aggiorna</button>
 
         </form>
     </div>

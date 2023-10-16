@@ -24,6 +24,7 @@
                         <td>{{ $post->image }}</td>
                         <td>{{ $post->published_at?->format('d/m/Y H:i') }}</td>
                         <td><a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-info">Dettagli</a></td>
+                        <td><a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning">Modifica</a></td>
                     </tr>
                 @endforeach
             </tbody>

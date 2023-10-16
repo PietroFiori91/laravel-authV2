@@ -37,6 +37,10 @@ Route::middleware(['auth', 'verified'])
         //READ
         Route::get("/posts", [PostController::class, "index"])->name("posts.index");
         Route::get("/posts/{post}", [PostController::class, "show"])->name("posts.show");
+
+        //UPDATE
+        Route::get("/posts/{post}/edit", [PostController::class, "edit"])->name("posts.edit");
+        Route::patch("/posts/{post}", [PostController::class, "update"])->name("posts.update");
     });
 
 Route::get("/posts", [GuestPostController::class, "index"])->name("post.index");
