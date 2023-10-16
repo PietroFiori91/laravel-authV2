@@ -25,6 +25,16 @@
             <div class="mb-5"><label class="form-label">Contenuto</label>
                 <textarea class="form-control" name="body">{{ $post->body }}</textarea>
             </div>
+            <div class="mb-5">
+                <div class="form-check">
+                    <input type="hidden" name="is_published" value="0">
+                    <input class="form-check-input" type="checkbox" name="is_published" id="is_published_input"
+                        {{ $post->is_published ? 'checked' : '' }} value="1">
+                    <label class="form-check-label" for="is_published_input">
+                        Pubblicato
+                    </label>
+                </div>
+            </div>
 
             <button class="btn btn-primary">Aggiorna</button>
 

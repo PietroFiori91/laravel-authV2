@@ -33,6 +33,7 @@ class PostUpsertRequest extends FormRequest
             "title" => "required|max:255",
             "body" => "required",
             "image" => "required|max:255",
+            "is_published" => "nullable|boolean",
         ];
     }
 

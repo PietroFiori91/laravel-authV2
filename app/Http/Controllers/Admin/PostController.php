@@ -55,6 +55,19 @@ class PostController extends Controller
         if ($data["title"] !== $post->title) {
             $data["slug"] = $this->generateSlug($data["title"]);
         }
+
+        $data["is_published"] = boolval($data["is_published"]);
+
+        // dd($data);
+
+        if ($data["is_published"]) {
+            $post->is_published = true;
+            $post->published_at = now();
+        } else {
+            $post->is_published = false;
+            $post->published_at = null;
+        }
+
         $post->update($data);
 
         return redirect()->route("admin.posts.show", $post->slug);
