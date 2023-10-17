@@ -20,8 +20,11 @@
                     value="{{ $post->title }}">
             </div>
             <div class="mb-5"><label class="form-label">Immagine</label>
-                <img src="{{ asset('/storage/' . post->image) }}" alt="" class="img-thumbnail" style="width: 100px">
-                <input type="file" accept="image/*" class="form-control" name="image">
+                @if ($post->image)
+                    <img src="{{ asset('/storage/' . post->image) }}" alt="" class="img-thumbnail"
+                        style="width: 100px">
+                @endif
+                <input type="file" accept="image/*" class="form-control" name="image/*">
             </div>
             <div class="mb-5"><label class="form-label">Contenuto</label>
                 <textarea class="form-control" name="body">{{ $post->body }}</textarea>
