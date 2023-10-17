@@ -69,20 +69,24 @@ class PostController extends Controller
             $post->published_at = null;
         }
 
-        $image_path = Storage::put("posts", $data["image"]);
-
-        $data["image"] = $image_path;
-
+        if (isset($data["image"])) {
+            if ($post->image) {
+                Storage::delete($post->image);
+            }
+            $image_path = Storage::put("posts", $data["image"]);
+            $data["image"] = $image_path;
+        }
         $post->update($data);
-
         return redirect()->route("admin.posts.show", $post->slug);
     }
 
     public function destroy($slug)
     {
         $post = Post::when("slug", $slug)->firstOrFail();
+        if ($post->image) {
+            Storage::delete($post->image);
+        }
         $post->delete();
-
         return redirect()->route("admin.posts.index");
     }
 

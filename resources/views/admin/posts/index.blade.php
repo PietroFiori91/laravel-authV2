@@ -21,7 +21,8 @@
                 @foreach ($posts as $post)
                     <tr>
                         <td>{{ $post->title }}</td>
-                        <td>{{ $post->image }}</td>
+                        <td><img src={{ asset('/storage/' . $post->image) }} alt="" class="img-thumbnail"
+                                style="width: 100px"></td>
                         <td>{{ $post->published_at?->format('d/m/Y H:i') }}</td>
                         <td><a href="{{ route('admin.posts.show', $post->id) }}" class="btn btn-info">Dettagli</a>
                             <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-warning">Modifica</a>
